@@ -1,0 +1,57 @@
+/* === FEEDING === */
+.feed-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.feed-tab-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.feed-table-wrap {
+    overflow-x: auto;
+}
+
+.feed-future {
+    opacity: 0.5;
+}
+
+.feed-diary-card {
+    padding: 1rem 1.15rem;
+    margin-bottom: 0.65rem;
+}
+
+.feed-diary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.feed-diary-product {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+    display: block;
+}
+
+.feed-diary-date {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+.feed-diary-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.feed-diary-notes {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+    line-height: 1.5;
+}

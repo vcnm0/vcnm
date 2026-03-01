@@ -1,0 +1,113 @@
+/* === NPR === */
+.npr-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.npr-summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.npr-pct {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.npr-legend {
+    display: flex;
+    gap: 1.25rem;
+    margin-top: 0.85rem;
+    flex-wrap: wrap;
+}
+
+.npr-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+}
+
+.npr-age-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.npr-age-group {
+    padding: 1.15rem;
+}
+
+.npr-future {
+    opacity: 0.5;
+}
+
+.npr-group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.npr-group-header h4 {
+    font-size: 0.95rem;
+    font-weight: 650;
+    color: var(--text);
+}
+
+.npr-skills {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.npr-skill {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.5rem 0.65rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--duration) var(--ease);
+}
+
+.npr-skill:hover {
+    background: var(--bg-secondary);
+}
+
+.npr-skill-done {
+    opacity: 0.7;
+}
+
+.npr-skill-done .npr-skill-info span {
+    text-decoration: line-through;
+    color: var(--text-muted);
+}
+
+.npr-skill input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.npr-skill-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.88rem;
+    color: var(--text);
+}
+
+.npr-skill-info i {
+    font-size: 0.82rem;
+    opacity: 0.7;
+    width: 18px;
+    text-align: center;
+    flex-shrink: 0;
+}

@@ -1,0 +1,181 @@
+/* === VACCINES === */
+.vaccines-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.vaccines-status-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.status-bar-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status-bar-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.status-bar-value {
+    font-size: 0.85rem;
+    font-weight: 650;
+    color: var(--primary);
+}
+
+.vaccines-toolbar {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.vaccines-toolbar .search-bar {
+    flex: 1;
+    min-width: 200px;
+}
+
+.vaccines-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.vaccine-age-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.vaccine-group-title {
+    font-size: 0.82rem;
+    font-weight: 650;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-left: 0.25rem;
+}
+
+.vaccine-group-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0.75rem;
+}
+
+.vaccine-card {
+    padding: 1rem 1.15rem;
+    transition: all var(--duration) var(--ease);
+    position: relative;
+    overflow: hidden;
+}
+
+.vaccine-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    border-radius: 3px 0 0 3px;
+}
+
+.vaccine-done::before {
+    background: var(--success);
+}
+
+.vaccine-pending::before {
+    background: var(--warning);
+}
+
+.vaccine-overdue::before {
+    background: var(--error);
+}
+
+.vaccine-done {
+    opacity: 0.75;
+}
+
+.vaccine-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.65rem;
+}
+
+.vaccine-card-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.vaccine-card-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.vaccine-card-type {
+    font-size: 0.7rem;
+    padding: 0.15rem 0.45rem;
+}
+
+.vaccine-card-details {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.65rem;
+}
+
+.vaccine-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.vaccine-detail-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.vaccine-detail-value {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    font-weight: 450;
+}
+
+.vaccine-card-actions {
+    display: flex;
+    gap: 0.25rem;
+    justify-content: flex-end;
+    border-top: 1px solid var(--border-light);
+    padding-top: 0.55rem;
+    margin-top: 0.25rem;
+}
+
+.vaccine-card-actions .btn-icon:hover {
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .vaccine-group-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .vaccines-toolbar {
+        flex-direction: column;
+    }
+
+    .vaccines-toolbar .search-bar {
+        width: 100%;
+    }
+}

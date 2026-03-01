@@ -1,0 +1,74 @@
+/* === GROWTH === */
+.growth-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.growth-summary .growth-sum-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.15rem;
+}
+
+.growth-sum-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius);
+    background: var(--primary-glow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.growth-sum-data {
+    display: flex;
+    flex-direction: column;
+}
+
+.growth-sum-value {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.growth-sum-value small {
+    font-size: 0.65em;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.growth-sum-diff {
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.growth-sum-diff.positive { color: var(--success); }
+.growth-sum-diff.negative { color: var(--error); }
+
+.growth-sum-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 0.1rem;
+}
+
+.growth-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.growth-charts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    .growth-charts {
+        grid-template-columns: 1fr;
+    }
+}

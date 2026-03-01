@@ -1,0 +1,123 @@
+/* === CHECKUP === */
+.checkup-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.checkup-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding-left: 0.5rem;
+}
+
+.checkup-item {
+    display: flex;
+    gap: 1rem;
+    position: relative;
+}
+
+.checkup-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    width: 28px;
+}
+
+.checkup-dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    flex-shrink: 0;
+    border: 2px solid var(--border);
+    background: var(--surface);
+    color: var(--text-muted);
+    z-index: 1;
+    transition: all var(--duration) var(--ease);
+}
+
+.checkup-item.done .checkup-dot {
+    background: var(--success);
+    border-color: var(--success);
+    color: #fff;
+}
+
+.checkup-item.current .checkup-dot {
+    background: var(--info);
+    border-color: var(--info);
+    color: #fff;
+    box-shadow: 0 0 0 4px var(--info-bg);
+}
+
+.checkup-item.overdue .checkup-dot {
+    background: var(--error);
+    border-color: var(--error);
+    color: #fff;
+}
+
+.checkup-line {
+    width: 2px;
+    flex: 1;
+    background: var(--border);
+    min-height: 1rem;
+}
+
+.checkup-item.done .checkup-line {
+    background: var(--success);
+}
+
+.checkup-content {
+    flex: 1;
+    margin-bottom: 0.75rem;
+    padding: 1rem 1.15rem;
+}
+
+.checkup-content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.checkup-content-header h4 {
+    font-size: 0.95rem;
+    font-weight: 650;
+    color: var(--text);
+}
+
+.checkup-specialists {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-bottom: 0.5rem;
+}
+
+.checkup-tests {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    align-items: center;
+}
+
+.checkup-tests-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-right: 0.25rem;
+}
+
+.checkup-item.future .checkup-content {
+    opacity: 0.55;
+}
+
+@media (max-width: 768px) {
+    .checkup-timeline {
+        padding-left: 0;
+    }
+}

@@ -1,0 +1,118 @@
+/* === TUBERCULIN === */
+.tb-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.tb-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+}
+
+.tb-info-block h4 {
+    font-size: 0.92rem;
+    font-weight: 650;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+}
+
+.tb-info-block p {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.65rem;
+    line-height: 1.5;
+}
+
+.tb-scale {
+    display: flex;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    height: 28px;
+}
+
+.tb-scale-item {
+    width: var(--w);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 600;
+    transition: transform var(--duration) var(--ease);
+}
+
+.tb-scale-item:hover {
+    transform: scaleY(1.15);
+    z-index: 1;
+}
+
+.tb-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 0.75rem;
+}
+
+.tb-card {
+    padding: 1rem 1.15rem;
+}
+
+.tb-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.65rem;
+}
+
+.tb-card-type {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+    display: block;
+}
+
+.tb-card-date {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+.tb-card-result {
+    margin-bottom: 0.65rem;
+}
+
+.tb-result-value {
+    font-size: 1.8rem;
+    font-weight: 750;
+    color: var(--text);
+    line-height: 1.1;
+}
+
+.tb-result-value small {
+    font-size: 0.7em;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.tb-result-desc {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+}
+
+.tb-card-actions {
+    display: flex;
+    gap: 0.25rem;
+    justify-content: flex-end;
+    border-top: 1px solid var(--border-light);
+    padding-top: 0.55rem;
+}
+
+@media (max-width: 768px) {
+    .tb-info-grid {
+        grid-template-columns: 1fr;
+    }
+    .tb-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,252 @@
+/* === DASHBOARD === */
+.dash-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+/* Child card */
+.dash-child {
+    grid-column: 1 / -1;
+}
+
+.dash-child-body {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.dash-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, var(--primary-glow), var(--info-bg));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    color: var(--primary);
+    flex-shrink: 0;
+}
+
+.dash-child-info h3 {
+    font-size: 1.15rem;
+    font-weight: 650;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+}
+
+.dash-child-meta {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.dash-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.dash-meta-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.dash-meta-value {
+    font-size: 0.88rem;
+    color: var(--text);
+    font-weight: 500;
+}
+
+/* Progress circle */
+.dash-progress-body {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.dash-progress-circle {
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+}
+
+.dash-circular-chart {
+    width: 100%;
+    height: 100%;
+}
+
+.dash-circle-bg {
+    fill: none;
+    stroke: var(--border);
+    stroke-width: 2.5;
+}
+
+.dash-circle-fill {
+    fill: none;
+    stroke: url(#progress-gradient);
+    stroke: var(--primary);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    transition: stroke-dasharray 1s ease;
+    animation: progressFill 1s ease forwards;
+}
+
+.dash-circle-text {
+    fill: var(--text);
+    font-size: 6.5px;
+    font-weight: 700;
+    text-anchor: middle;
+    font-family: 'Inter', sans-serif;
+}
+
+.dash-circle-sub {
+    fill: var(--text-muted);
+    font-size: 3px;
+    text-anchor: middle;
+    font-family: 'Inter', sans-serif;
+}
+
+.dash-progress-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.dash-stat {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.dash-stat-value {
+    font-size: 1.35rem;
+    font-weight: 700;
+    min-width: 28px;
+}
+
+.dash-stat-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* Upcoming list */
+.dash-upcoming-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.dash-upcoming-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.dash-upcoming-item:last-child {
+    border-bottom: none;
+}
+
+.dash-upcoming-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary);
+    flex-shrink: 0;
+}
+
+.dash-upcoming-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    gap: 0.5rem;
+}
+
+.dash-upcoming-name {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.dash-upcoming-date {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+.dash-upcoming-item.overdue .dash-upcoming-name {
+    color: var(--error);
+}
+
+/* Measurements */
+.dash-measure-grid {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.dash-measure-item {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    flex: 1;
+    min-width: 120px;
+    padding: 0.65rem;
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+}
+
+.dash-measure-item i {
+    font-size: 1.1rem;
+    color: var(--primary);
+    opacity: 0.7;
+}
+
+.dash-measure-data {
+    display: flex;
+    flex-direction: column;
+}
+
+.dash-measure-value {
+    font-size: 1rem;
+    font-weight: 650;
+    color: var(--text);
+}
+
+.dash-measure-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
+.dash-measure-date {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.65rem;
+}
+
+@media (max-width: 768px) {
+    .dash-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dash-child-body {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .dash-child-meta {
+        justify-content: center;
+    }
+
+    .dash-progress-body {
+        flex-direction: column;
+        text-align: center;
+    }
+}

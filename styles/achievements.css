@@ -1,0 +1,106 @@
+/* === ACHIEVEMENTS === */
+.ach-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.ach-summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ach-pct {
+    font-size: 2.5rem;
+    font-weight: 800;
+}
+
+.ach-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.ach-card {
+    text-align: center;
+    padding: 1.75rem 1.25rem 1.5rem;
+    transition: all var(--duration) var(--ease);
+    position: relative;
+    overflow: hidden;
+}
+
+.ach-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    opacity: 0;
+    transition: opacity var(--duration) var(--ease);
+}
+
+.ach-unlocked::before {
+    opacity: 1;
+}
+
+.ach-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.ach-icon-wrap {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--duration) var(--ease);
+}
+
+.ach-card:hover .ach-icon-wrap {
+    transform: scale(1.1);
+}
+
+.ach-locked {
+    opacity: 0.5;
+    filter: grayscale(0.3);
+}
+
+.ach-locked:hover {
+    opacity: 0.7;
+}
+
+.ach-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+}
+
+.ach-desc {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .ach-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .ach-card {
+        padding: 1.25rem 0.75rem;
+    }
+    .ach-icon-wrap {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ach-grid {
+        grid-template-columns: 1fr;
+    }
+}
