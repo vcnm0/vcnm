@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Трекер вакцинаций и здоровья ребенка по Национальному календарю профилактических прививок РФ"
+    />
+    <title>Трекер здоровья ребенка</title>
+    <link rel="manifest" href="manifest.json">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/dashboard.css" />
+    <link rel="stylesheet" href="styles/calendar.css" />
+    <link rel="stylesheet" href="styles/vaccines.css" />
+    <link rel="stylesheet" href="styles/tuberculin.css" />
+    <link rel="stylesheet" href="styles/growth.css" />
+    <link rel="stylesheet" href="styles/checkup.css" />
+    <link rel="stylesheet" href="styles/feeding.css" />
+    <link rel="stylesheet" href="styles/npr.css" />
+    <link rel="stylesheet" href="styles/achievements.css" />
+    <link rel="stylesheet" href="styles/statistics.css" />
+    <link rel="stylesheet" href="styles/authors.css" />
+    <link rel="stylesheet" href="styles/teeth.css" />
+    <link rel="stylesheet" href="styles/chatbot.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="logo-container">
+            <div class="logo-icon">
+              <i class="fas fa-shield-heart"></i>
+            </div>
+            <div class="logo-text">
+              <h1 class="app-title">HealthTracker</h1>
+              <p class="app-subtitle">Здоровье ребенка</p>
+            </div>
+          </div>
+          <button class="sidebar-toggle-btn" id="sidebar-toggle" title="Свернуть меню">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="#dashboard" class="nav-item active" data-title="Главная">
+            <i class="fas fa-house"></i>
+            <span class="nav-text">Главная</span>
+          </a>
+          <a href="#calendar" class="nav-item" data-title="Календарь">
+            <i class="fas fa-calendar-days"></i>
+            <span class="nav-text">Календарь</span>
+          </a>
+          <a href="#vaccines" class="nav-item" data-title="Вакцинация">
+            <i class="fas fa-syringe"></i>
+            <span class="nav-text">Вакцинация</span>
+          </a>
+          <a
+            href="#tuberculin"
+            class="nav-item"
+            data-title="Туберкулинодиагностика"
+          >
+            <i class="fas fa-lungs"></i>
+            <span class="nav-text">Туберкулинодиагностика</span>
+          </a>
+          <a href="#growth" class="nav-item" data-title="Физическое развитие">
+            <i class="fas fa-chart-line"></i>
+            <span class="nav-text">Физическое развитие</span>
+          </a>
+          <a href="#checkup" class="nav-item" data-title="Профосмотры">
+            <i class="fas fa-stethoscope"></i>
+            <span class="nav-text">Профосмотры</span>
+          </a>
+          <a href="#feeding" class="nav-item" data-title="Вскармливание">
+            <i class="fas fa-utensils"></i>
+            <span class="nav-text">Вскармливание</span>
+          </a>
+          <a href="#teeth" class="nav-item" data-title="Зубная формула">
+            <i class="fas fa-tooth"></i>
+            <span class="nav-text">Зубная формула</span>
+          </a>
+          <a href="#npr" class="nav-item" data-title="НПР">
+            <i class="fas fa-brain"></i>
+            <span class="nav-text">НПР</span>
+          </a>
+          <a href="#achievements" class="nav-item" data-title="Достижения">
+            <i class="fas fa-trophy"></i>
+            <span class="nav-text">Достижения</span>
+          </a>
+          <a href="#statistics" class="nav-item" data-title="Статистика">
+            <i class="fas fa-chart-pie"></i>
+            <span class="nav-text">Статистика</span>
+          </a>
+        </nav>
+        <div class="sidebar-footer">
+          <a href="#authors" id="nav-authors" class="nav-item" data-title="Авторы">
+            <i class="fas fa-users-viewfinder"></i>
+            <span class="nav-text">Об Авторах</span>
+          </a>
+          <a
+            href="https://ohmysky0.github.io/vcnm.github.io/"
+            class="back-link"
+          >
+            <i class="fas fa-arrow-left"></i>
+            <span>На главный экран</span>
+          </a>
+          <button class="btn-theme-toggle" id="theme-toggle">
+            <i class="fas fa-moon"></i>
+            <span class="toggle-text">Темная тема</span>
+          </button>
+        </div>
+      </aside>
+
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <main class="main-content">
+        <header class="main-header">
+          <div class="header-left">
+            <h2 id="page-title" class="page-title">Главная</h2>
+            <p id="page-subtitle" class="page-subtitle">
+              Обзор состояния здоровья
+            </p>
+          </div>
+          <div class="header-right">
+            <div class="child-quick-info" id="child-quick-info"></div>
+          </div>
+        </header>
+        <div id="main-container" class="main-container"></div>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/calendar.js"></script>
+    <script src="js/vaccines.js"></script>
+    <script src="js/tuberculin.js"></script>
+    <script src="js/growth.js"></script>
+    <script src="js/checkup.js"></script>
+    <script src="js/feeding.js"></script>
+    <script src="js/npr.js"></script>
+    <script src="js/achievements.js"></script>
+    <script src="js/statistics.js"></script>
+    <script src="js/authors.js"></script>
+    <script src="js/teeth.js"></script>
+    <script src="js/chatbot.js"></script>
+  </body>
+</html>
