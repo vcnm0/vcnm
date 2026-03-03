@@ -270,6 +270,10 @@ const Vaccines = {
     },
 
     setupEventListeners() {
+        // Guard against duplicate listeners when module is re-opened
+        if (this._listenersAttached) return;
+        this._listenersAttached = true;
+
         this.container.addEventListener('click', (e) => {
             const btn = e.target.closest('button');
             if (!btn) return;
@@ -280,6 +284,7 @@ const Vaccines = {
             }
 
             const id = parseInt(btn.dataset.id);
+            if (isNaN(id)) return;
             if (btn.classList.contains('btn-toggle')) this.toggleVaccine(id);
             else if (btn.classList.contains('btn-edit')) this.showVaccineModal(id);
             else if (btn.classList.contains('btn-delete')) this.showDeleteConfirmation(id);
@@ -406,8 +411,12 @@ const Vaccines = {
     toggleVaccine(id) {
         const vaccine = this.vaccines.find(v => v.id === id);
         if (!vaccine) return;
+
+        // Capture state BEFORE any changes
+        const wasCompleted = vaccine.completed;
         
-        if (!vaccine.completed) {
+        if (!wasCompleted) {
+            // Mark as completed — show confirmation modal
             Utils.showModal('Выполнение вакцинации', `
                 <form id="execute-vaccine-form">
                     <p style="margin-bottom:1rem;font-size:0.9rem;">Вакцина: <strong>${vaccine.name} (${vaccine.type})</strong></p>
@@ -426,17 +435,16 @@ const Vaccines = {
                 this.saveVaccines();
                 Utils.closeModal();
                 this.render();
-
                 Utils.showNotification('Вакцинация выполнена', 'success');
                 if (typeof Dashboard !== 'undefined') Dashboard.refresh();
             });
         } else {
+            // Unmark — no modal, just toggle off silently
             vaccine.completed = false;
             vaccine.executionDate = null;
             this.recalculateCatchUp();
             this.saveVaccines();
-            this.render();
-
+            this.renderVaccines();
             Utils.showNotification('Отметка снята', 'info');
             if (typeof Dashboard !== 'undefined') Dashboard.refresh();
         }

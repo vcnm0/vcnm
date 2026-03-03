@@ -59,6 +59,31 @@ const Growth = {
                 24:{p3:80.0,p15:82.3,p50:86.4,p85:90.6,p97:92.9},30:{p3:84.3,p15:86.8,p50:91.2,p85:95.5,p97:98.1},
                 36:{p3:87.7,p15:90.4,p50:95.1,p85:99.7,p97:102.7}
             }
+        },
+        // ИМТ-для-возраста (WHO/РФ, кг/м², 0-36 мес)
+        bmiForAge: {
+            male: {
+                0:{p3:11.0,p15:12.2,p50:13.4,p85:14.8,p97:16.2},
+                3:{p3:14.0,p15:15.2,p50:16.2,p85:17.3,p97:18.4},
+                6:{p3:14.7,p15:15.9,p50:17.2,p85:18.6,p97:19.8},
+                9:{p3:14.6,p15:15.7,p50:17.0,p85:18.4,p97:19.6},
+                12:{p3:14.2,p15:15.2,p50:16.4,p85:17.8,p97:19.0},
+                18:{p3:13.6,p15:14.6,p50:15.8,p85:17.2,p97:18.5},
+                24:{p3:13.5,p15:14.4,p50:15.5,p85:16.9,p97:18.2},
+                30:{p3:13.3,p15:14.2,p50:15.4,p85:16.7,p97:18.0},
+                36:{p3:13.1,p15:14.0,p50:15.2,p85:16.5,p97:17.8}
+            },
+            female: {
+                0:{p3:10.8,p15:12.0,p50:13.2,p85:14.6,p97:15.9},
+                3:{p3:13.4,p15:14.6,p50:15.8,p85:17.0,p97:18.2},
+                6:{p3:14.1,p15:15.3,p50:16.6,p85:18.0,p97:19.3},
+                9:{p3:13.9,p15:15.0,p50:16.4,p85:17.9,p97:19.1},
+                12:{p3:13.6,p15:14.6,p50:15.9,p85:17.3,p97:18.6},
+                18:{p3:13.1,p15:14.1,p50:15.4,p85:16.8,p97:18.1},
+                24:{p3:13.0,p15:13.9,p50:15.1,p85:16.5,p97:17.8},
+                30:{p3:12.8,p15:13.7,p50:14.9,p85:16.3,p97:17.6},
+                36:{p3:12.7,p15:13.6,p50:14.7,p85:16.1,p97:17.4}
+            }
         }
     },
 
@@ -115,6 +140,8 @@ const Growth = {
         const wDiff = prev ? (m.weight - prev.weight) : null;
         const hDiff = prev ? (m.height - prev.height) : null;
 
+        const bmiAssess = this.childInfo ? this.getBMIAssessment(bmi, age) : { label: '--', color: 'var(--text-muted)', corridor: '--' };
+
         return `
             <div class="growth-summary grid-3 animate-in">
                 <div class="card growth-sum-card">
@@ -134,17 +161,32 @@ const Growth = {
                     </div>
                 </div>
                 <div class="card growth-sum-card">
-                    <div class="growth-sum-icon"><i class="fas fa-calculator"></i></div>
+                    <div class="growth-sum-icon" style="color:${bmiAssess.color}"><i class="fas fa-calculator"></i></div>
                     <div class="growth-sum-data">
                         <span class="growth-sum-value">${bmi.toFixed(1)}</span>
-                        <span class="growth-sum-label">ИМТ</span>
+                        <span class="growth-sum-label" style="color:${bmiAssess.color}; font-weight:600">${bmiAssess.label}</span>
+                        <span class="growth-sum-label">Коридор: ${bmiAssess.corridor}</span>
                     </div>
                 </div>
             </div>
         `;
     },
 
-    calcBMI(w, h) { return w / ((h / 100) ** 2); },
+    calcBMI(w, h) { return h > 0 ? w / ((h / 100) ** 2) : 0; },
+
+    // Оценка ИМТ для ребёнка по центильным коридорам РФ
+    getBMIAssessment(bmi, ageMonths) {
+        const gender = this.childInfo?.gender || 'male';
+        const stds = this.rfStandards.bmiForAge?.[gender];
+        if (!stds || ageMonths < 0) return { label: '--', color: 'var(--text-muted)', corridor: '--' };
+        const closest = Object.keys(stds).reduce((p, c) => Math.abs(c - ageMonths) < Math.abs(p - ageMonths) ? c : p);
+        const s = stds[closest];
+        if (bmi < s.p3) return { label: 'Выраженный дефицит', color: 'var(--error)', corridor: '<3' };
+        if (bmi < s.p15) return { label: 'Недостаточность',   color: 'var(--warning)', corridor: '3–15' };
+        if (bmi < s.p85) return { label: 'Норма',             color: 'var(--success)', corridor: '15–85' };
+        if (bmi < s.p97) return { label: 'Избыток массы',     color: 'var(--warning)', corridor: '85–97' };
+        return { label: 'Ожирение', color: 'var(--error)', corridor: '>97' };
+    },
 
     getPercentile(age, val, type) {
         const gender = this.childInfo?.gender || 'male';
@@ -229,20 +271,24 @@ const Growth = {
         const sorted = [...this.measurements].sort((a, b) => new Date(b.date) - new Date(a.date));
         container.innerHTML = `
             <table class="data-table">
-                <thead><tr><th>Дата</th><th>Вес (кг)</th><th>Рост (см)</th><th>ИМТ</th><th></th></tr></thead>
+                <thead><tr><th>Дата</th><th>Вес (кг)</th><th>Рост (см)</th><th>ИМТ / Оценка</th><th></th></tr></thead>
                 <tbody>
-                    ${sorted.map(m => `
+                    ${sorted.map(m => {
+                        const bmiVal = this.calcBMI(m.weight, m.height);
+                        const ageAtM = this.childInfo ? Utils.calculateAgeInMonths(this.childInfo.birthdate, m.date) : 0;
+                        const assess = this.getBMIAssessment(bmiVal, ageAtM);
+                        return `
                         <tr>
                             <td>${Utils.formatDateShort(m.date)}</td>
                             <td>${m.weight.toFixed(1)}</td>
                             <td>${m.height.toFixed(1)}</td>
-                            <td>${this.calcBMI(m.weight, m.height).toFixed(1)}</td>
+                            <td><span style="font-weight:600">${bmiVal.toFixed(1)}</span> <span style="color:${assess.color};font-size:0.8rem">${assess.label}</span></td>
                             <td style="text-align:right">
                                 <button class="btn-icon btn-edit-m" data-id="${m.id}"><i class="fas fa-pen"></i></button>
                                 <button class="btn-icon btn-delete-m" data-id="${m.id}"><i class="fas fa-trash-can"></i></button>
                             </td>
                         </tr>
-                    `).join('')}
+                    `}).join('')}
                 </tbody>
             </table>
         `;

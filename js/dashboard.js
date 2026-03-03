@@ -293,7 +293,10 @@ const Dashboard = {
 
     refresh() {
         this.childInfo = JSON.parse(localStorage.getItem('childInfo'));
-        this.render();
-
+        
+        // Only re-render Dashboard if it's currently visible
+        if (window.location.hash === '' || window.location.hash === '#dashboard') {
+            this.render();
+        }
     }
 };

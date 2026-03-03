@@ -290,6 +290,8 @@ const App = {
                 case 'npr': if (typeof NPR !== 'undefined') NPR.init(container, this.childInfo); break;
                 case 'achievements': if (typeof Achievements !== 'undefined') Achievements.init(container, this.childInfo); break;
                 case 'statistics': if (typeof Statistics !== 'undefined') Statistics.init(container, this.childInfo); break;
+                case 'emergency': if (typeof Emergency !== 'undefined') Emergency.init(container, this.childInfo); break;
+                case 'vitamind': if (typeof VitaminD !== 'undefined') VitaminD.init(container, this.childInfo); break;
                 case 'authors': if (typeof Authors !== 'undefined') Authors.init(container); break;
                 default: Dashboard.init(container, this.childInfo); break;
             }
@@ -324,30 +326,23 @@ const App = {
 
     setupMobileMenu() {
         const toggle = document.getElementById('mobile-menu-toggle');
-        if (!toggle) return;
-
-        // Create overlay
-        const overlay = document.createElement('div');
-        overlay.className = 'sidebar-overlay';
-        overlay.id = 'sidebar-overlay';
-        document.body.appendChild(overlay);
-
-        toggle.addEventListener('click', () => this.toggleMobileMenu());
-        overlay.addEventListener('click', () => this.closeMobileMenu());
+        const overlay = document.getElementById('sidebar-overlay');
+        
+        if (toggle) {
+            toggle.addEventListener('click', () => this.toggleMobileMenu());
+        }
+        
+        if (overlay) {
+            overlay.addEventListener('click', () => this.closeMobileMenu());
+        }
     },
 
     toggleMobileMenu() {
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('sidebar-overlay');
-        sidebar.classList.toggle('open');
-        overlay.classList.toggle('show');
+        document.body.classList.toggle('sidebar-mobile-open');
     },
 
     closeMobileMenu() {
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('sidebar-overlay');
-        if (sidebar) sidebar.classList.remove('open');
-        if (overlay) overlay.classList.remove('show');
+        document.body.classList.remove('sidebar-mobile-open');
     },
 
     setupThemeToggle() {
