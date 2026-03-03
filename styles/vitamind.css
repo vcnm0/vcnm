@@ -1,0 +1,65 @@
+/* === PREVENTION MODULE (VITAMIN D CALENDAR) === */
+.vd-page { max-width: 950px; margin: 0 auto; }
+.vd-page h2 { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem; }
+.vd-page .section-desc { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem; }
+
+.vd-layout { display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.5rem; align-items: start; }
+.vd-main { display: flex; flex-direction: column; gap: 1.25rem; }
+
+/* Dose card */
+.vd-dose-card { padding: 1.5rem; border-left: 4px solid var(--primary); }
+.vd-dose-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.vd-dose-icon {
+    width: 42px; height: 42px; border-radius: 50%;
+    color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+}
+.vd-dose-title { font-weight: 700; font-size: 1.1rem; }
+.vd-dose-group { font-size: 0.82rem; color: var(--text-muted); }
+.vd-dose-value { font-size: 2rem; font-weight: 800; line-height: 1; margin-bottom: 0.5rem; }
+.vd-dose-note { font-size: 0.82rem; color: var(--text-secondary); display: flex; align-items: center; gap: 0.4rem; }
+
+/* Interactive Calendar */
+.vd-cal-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-light);
+}
+.vd-cal-title { font-weight: 700; font-size: 1.1rem; }
+.vd-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+.vd-cal-weekdays {
+    margin-bottom: 0.5rem; font-size: 0.75rem; color: var(--text-muted); font-weight: 600;
+    text-transform: uppercase; text-align: center;
+}
+.vd-cal-day {
+    aspect-ratio: 1; border-radius: 8px;
+    background: var(--bg-secondary); border: 2px solid transparent;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem; font-weight: 500; color: var(--text);
+    cursor: pointer; transition: all 0.2s; user-select: none; -webkit-tap-highlight-color: transparent;
+}
+.vd-cal-day.empty { background: transparent; cursor: default; }
+.vd-cal-day:not(.empty):hover { background: var(--border-light); }
+.vd-cal-day.today { border-color: var(--primary); color: var(--primary); font-weight: 700; }
+.vd-cal-day.taken { background: var(--warning); color: #fff; font-weight: 700; box-shadow: 0 2px 8px rgba(245,158,11,0.25); border-color: var(--warning); }
+.vd-cal-day.taken.today { border-color: #fff; } /* Override today border if taken for visibility */
+
+/* Sidebar */
+.vd-sidebar .card { margin-bottom: 1.25rem; }
+.vd-risk-grid { display: flex; flex-direction: column; gap: 0.5rem; }
+.vd-risk-item {
+    padding: 0.6rem 0.8rem; border-radius: 6px;
+    background: var(--bg-secondary); font-size: 0.82rem;
+    color: var(--text-secondary);
+}
+
+.vd-signs-list { list-style: none; padding: 0; margin: 0; }
+.vd-signs-list li {
+    padding: 0.6rem 0; font-size: 0.82rem; color: var(--text-secondary);
+    border-bottom: 1px dashed var(--border-light);
+    line-height: 1.4; position: relative; padding-left: 1.25rem;
+}
+.vd-signs-list li::before {
+    content: '•'; position: absolute; left: 0; font-size: 1.2rem; color: var(--warning); top: 0.4rem;
+}
+.vd-signs-list li:last-child { border-bottom: none; }
+
+@media (max-width: 768px) { .vd-layout { grid-template-columns: 1fr; } }

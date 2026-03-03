@@ -1,262 +1,67 @@
-/* === TEETH / DENTAL FORMULA === */
+/* === TEETH / DENTAL FORMULA v4 === */
+.teeth-page { max-width: 900px; margin: 0 auto; }
+.teeth-page h2 { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem; }
+.teeth-page .section-desc { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem; }
 
-.teeth-page {
-    max-width: 900px;
-    margin: 0 auto;
-}
+.teeth-layout { display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.5rem; align-items: start; }
+.jaw-card { padding: 1.5rem; }
+.jaw-section { margin: 1rem 0; }
+.jaw-label { text-align: center; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 0.75rem; }
 
-.teeth-page h2 {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.25rem;
-}
+.teeth-row { display: flex; justify-content: center; align-items: flex-end; gap: 0.4rem; padding: 0.75rem 0; }
+.teeth-row.lower { align-items: flex-start; border-top: 2px dashed var(--border-light); padding-top: 1rem; }
+.teeth-row.upper { border-bottom: 2px dashed var(--border-light); padding-bottom: 1rem; }
+.row-divider { width: 2px; height: 44px; background: var(--border-light); margin: 0 0.25rem; opacity: 0.6; }
 
-.teeth-page .section-desc {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
-}
+/* Tooth element */
+.t { display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; padding: 6px; border-radius: 8px; transition: background 0.2s; -webkit-tap-highlight-color: transparent; user-select: none; }
+.t:hover { background: var(--bg-secondary); box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
 
-/* Grid: jaw + sidebar */
-.teeth-layout {
-    display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: 1.5rem;
-    align-items: start;
-}
+.t-shape { width: 30px; height: 36px; background: #eee; border: 2px solid var(--border); border-radius: 6px 6px 12px 12px; position: relative; transition: all 0.25s ease; pointer-events: none; }
+.lower .t-shape { border-radius: 12px 12px 6px 6px; }
+.t-shape.canine { border-radius: 10px 10px 16px 16px; width: 26px; }
+.lower .t-shape.canine { border-radius: 16px 16px 10px 10px; }
+.t-shape.molar { width: 34px; height: 34px; border-radius: 8px; }
+.t-num { font-size: 0.7rem; color: var(--text-muted); font-weight: 600; pointer-events: none; }
 
-/* Jaw card */
-.jaw-card {
-    padding: 1.5rem;
-}
+/* ERUPTED (healthy) */
+.t.erupted .t-shape { background: #fff; border-color: var(--primary); box-shadow: 0 0 10px rgba(16,185,129,0.35); }
+.t.erupted .t-shape::after { content: '✓'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--primary); font-weight: 800; font-size: 0.85rem; }
 
-.jaw-section {
-    margin: 1rem 0;
-}
+/* CARIES */
+.t.caries .t-shape { background: #fff0f0; border-color: var(--error); box-shadow: 0 0 10px rgba(239,68,68,0.3); }
+.caries-dot { position: absolute; top: 3px; right: 3px; width: 8px; height: 8px; border-radius: 50%; background: var(--error); border: 1px solid #fff; z-index: 2; animation: cPulse 2s infinite; }
+@keyframes cPulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
 
-.jaw-label {
-    text-align: center;
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-    margin-bottom: 0.75rem;
-}
+/* TREATED (filled) */
+.t.treated .t-shape { background: #f0f8ff; border-color: var(--info); box-shadow: 0 0 8px rgba(6,182,212,0.3); }
+.treated-mark { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--info); font-weight: 800; font-size: 0.75rem; }
 
-/* Row of 5 + divider + 5 */
-.teeth-row {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 0.4rem;
-    padding: 0.75rem 0;
-}
+/* FALLEN */
+.t.fallen .t-shape { background: var(--bg-secondary); border: 2px dashed var(--text-muted); opacity: 0.5; }
 
-.teeth-row.lower {
-    align-items: flex-start;
-    border-top: 2px dashed var(--border-light);
-    padding-top: 1rem;
-}
-
-.teeth-row.upper {
-    border-bottom: 2px dashed var(--border-light);
-    padding-bottom: 1rem;
-}
-
-.row-divider {
-    width: 2px;
-    height: 44px;
-    background: var(--border-light);
-    margin: 0 0.25rem;
-    opacity: 0.6;
-}
-
-/* Single tooth */
-.t {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    cursor: pointer;
-    padding: 6px;
-    border-radius: 8px;
-    transition: background 0.2s, box-shadow 0.2s;
-    -webkit-tap-highlight-color: transparent;
-    user-select: none;
-}
-
-.t:hover {
-    background: var(--bg-secondary);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-}
-
-.t:active {
-    background: var(--surface-hover);
-}
-
-/* Tooth visual */
-.t-shape {
-    width: 30px;
-    height: 36px;
-    background: #f0f0f0;
-    border: 2px solid var(--border);
-    border-radius: 6px 6px 12px 12px;
-    position: relative;
-    transition: all 0.25s ease;
-    pointer-events: none; /* clicks go to parent .t */
-}
-
-/* Bottom teeth flip radius */
-.lower .t-shape {
-    border-radius: 12px 12px 6px 6px;
-}
-
-/* Canine shape */
-.t-shape.canine {
-    border-radius: 10px 10px 16px 16px;
-    width: 26px;
-}
-.lower .t-shape.canine {
-    border-radius: 16px 16px 10px 10px;
-}
-
-/* Molar shape — wider */
-.t-shape.molar {
-    width: 34px;
-    height: 34px;
-    border-radius: 8px;
-}
-
-/* Label under tooth */
-.t-num {
-    font-size: 0.7rem;
-    color: var(--text-muted);
-    font-weight: 600;
-    pointer-events: none;
-}
-
-/* === ERUPTED state === */
-.t.erupted .t-shape {
-    background: #fff;
-    border-color: var(--primary);
-    box-shadow: 0 0 10px rgba(16,185,129,0.35);
-}
-.t.erupted .t-shape::after {
-    content: '✓';
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary);
-    font-weight: 800;
-    font-size: 0.85rem;
-}
-
-/* === FALLEN state === */
-.t.fallen .t-shape {
-    background: var(--bg-secondary);
-    border: 2px dashed var(--text-muted);
-    opacity: 0.5;
-}
+/* REMOVED */
+.t.removed .t-shape { background: var(--bg-secondary); border: 2px dashed var(--error); opacity: 0.4; }
+.t.removed .t-shape::after { content: '×'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--error); font-weight: 800; font-size: 1rem; }
 
 /* Legend */
-.teeth-legend {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 1.25rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border-light);
-}
+.teeth-legend { display: flex; justify-content: center; gap: 1rem; margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-light); flex-wrap: wrap; }
+.teeth-legend span { display: flex; align-items: center; gap: 0.35rem; font-size: 0.75rem; color: var(--text-secondary); }
+.legend-dot { width: 12px; height: 12px; border-radius: 4px; border: 2px solid var(--border); background: #eee; }
+.legend-dot.erupted { background: #fff; border-color: var(--primary); box-shadow: 0 0 4px rgba(16,185,129,0.3); }
+.legend-dot.lg-caries { background: #fff0f0; border-color: var(--error); }
+.legend-dot.lg-treated { background: #f0f8ff; border-color: var(--info); }
+.legend-dot.fallen { background: var(--bg-secondary); border: 2px dashed var(--text-muted); opacity: 0.5; }
 
-.teeth-legend span {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-}
+/* Sidebar */
+.teeth-sidebar .card { margin-bottom: 1.25rem; }
+.teeth-stat-number { font-size: 2rem; font-weight: 700; line-height: 1; }
+.teeth-stat-label { font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.2rem; }
+.teeth-mini-stat { display: flex; gap: 0.5rem; }
+.teeth-mini-stat > div { flex: 1; padding: 0.6rem; background: var(--bg-secondary); border-radius: 6px; border-left: 3px solid var(--primary); text-align: center; }
+.teeth-progress-ring { width: 52px; height: 52px; border-radius: 50%; }
+.teeth-info-list { list-style: none; padding: 0; margin: 0; }
+.teeth-info-list li { padding: 0.45rem 0; font-size: 0.82rem; color: var(--text-secondary); border-bottom: 1px dashed var(--border-light); display: flex; justify-content: space-between; }
+.teeth-info-list li:last-child { border-bottom: none; }
 
-.legend-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 4px;
-    border: 2px solid var(--border);
-    background: #f0f0f0;
-}
-.legend-dot.erupted {
-    background: #fff;
-    border-color: var(--primary);
-    box-shadow: 0 0 6px rgba(16,185,129,0.3);
-}
-.legend-dot.fallen {
-    background: var(--bg-secondary);
-    border: 2px dashed var(--text-muted);
-    opacity: 0.5;
-}
-
-/* Sidebar stats */
-.teeth-sidebar .card {
-    margin-bottom: 1.25rem;
-}
-
-.teeth-stat-number {
-    font-size: 2.25rem;
-    font-weight: 700;
-    line-height: 1;
-}
-.teeth-stat-label {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    margin-top: 0.25rem;
-}
-
-.teeth-mini-stat {
-    display: flex;
-    gap: 0.75rem;
-    margin-top: 1rem;
-}
-.teeth-mini-stat > div {
-    flex: 1;
-    padding: 0.75rem;
-    background: var(--bg-secondary);
-    border-radius: var(--radius-sm);
-    border-left: 3px solid var(--primary);
-}
-.teeth-mini-stat > div:last-child {
-    border-left-color: var(--warning);
-}
-
-.teeth-progress-ring {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-}
-
-/* Info list */
-.teeth-info-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-.teeth-info-list li {
-    padding: 0.5rem 0;
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    border-bottom: 1px dashed var(--border-light);
-    display: flex;
-    justify-content: space-between;
-}
-.teeth-info-list li:last-child {
-    border-bottom: none;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .teeth-layout {
-        grid-template-columns: 1fr;
-    }
-}
+@media (max-width: 768px) { .teeth-layout { grid-template-columns: 1fr; } }

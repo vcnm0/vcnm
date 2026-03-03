@@ -1,0 +1,53 @@
+/* === EMERGENCY AID MODULE === */
+.emg-page { max-width: 900px; margin: 0 auto; }
+.emg-page h2 { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem; }
+.emg-page .section-desc { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem; }
+
+.emg-weight-banner {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1.25rem;
+    background: linear-gradient(135deg, rgba(239,68,68,0.06), rgba(245,158,11,0.06));
+    border-left: 4px solid var(--error);
+}
+.emg-weight-banner i { font-size: 1.5rem; color: var(--error); }
+
+.emg-section-title {
+    font-size: 1.1rem; font-weight: 700; margin: 1.75rem 0 0.75rem;
+    display: flex; align-items: center; gap: 0.5rem; color: var(--text);
+}
+
+/* Drug cards */
+.emg-drugs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+.emg-drug-card {
+    display: flex; align-items: flex-start; gap: 1rem; padding: 1.25rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.emg-drug-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.emg-drug-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+}
+.emg-drug-info { flex: 1; min-width: 0; }
+.emg-drug-name { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.35rem; color: var(--text); }
+.emg-drug-freq { font-size: 0.78rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.35rem; margin-top: 0.25rem; }
+
+/* Aid algorithm cards */
+.emg-aid-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+.emg-aid-card { padding: 0; overflow: hidden; }
+.emg-aid-header {
+    padding: 0.9rem 1.25rem; font-weight: 700; font-size: 0.95rem;
+    border-bottom: 3px solid; display: flex; align-items: center; gap: 0.5rem;
+    background: var(--bg-secondary);
+}
+.emg-aid-steps {
+    padding: 1rem 1.25rem 1rem 2.25rem; margin: 0;
+    font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6;
+}
+.emg-aid-steps li { margin-bottom: 0.35rem; }
+
+.emg-footer { margin-top: 2rem; }
+
+@media (max-width: 600px) {
+    .emg-drugs-grid, .emg-aid-grid { grid-template-columns: 1fr; }
+}
