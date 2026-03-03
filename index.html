@@ -8,7 +8,7 @@
       content="Трекер вакцинаций и здоровья ребенка по Национальному календарю профилактических прививок РФ"
     />
     <title>Трекер здоровья ребенка</title>
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="manifest.json" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -30,10 +30,13 @@
     <link rel="stylesheet" href="styles/statistics.css" />
     <link rel="stylesheet" href="styles/authors.css" />
     <link rel="stylesheet" href="styles/teeth.css" />
+    <link rel="stylesheet" href="styles/emergency.css" />
+    <link rel="stylesheet" href="styles/vitamind.css" />
     <link rel="stylesheet" href="styles/chatbot.css" />
   </head>
   <body>
     <div class="app-container">
+      <div class="sidebar-overlay" id="sidebar-overlay"></div>
       <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
           <div class="logo-container">
@@ -45,7 +48,11 @@
               <p class="app-subtitle">Здоровье ребенка</p>
             </div>
           </div>
-          <button class="sidebar-toggle-btn" id="sidebar-toggle" title="Свернуть меню">
+          <button
+            class="sidebar-toggle-btn"
+            id="sidebar-toggle"
+            title="Свернуть меню"
+          >
             <i class="fas fa-chevron-left"></i>
           </button>
         </div>
@@ -94,13 +101,26 @@
             <i class="fas fa-trophy"></i>
             <span class="nav-text">Достижения</span>
           </a>
+          <a href="#vitamind" class="nav-item" data-title="Профилактика">
+            <i class="fas fa-shield-halved"></i>
+            <span class="nav-text">Профилактика</span>
+          </a>
+          <a href="#emergency" class="nav-item" data-title="Экстренная помощь">
+            <i class="fas fa-kit-medical"></i>
+            <span class="nav-text">Экстренная помощь</span>
+          </a>
           <a href="#statistics" class="nav-item" data-title="Статистика">
             <i class="fas fa-chart-pie"></i>
             <span class="nav-text">Статистика</span>
           </a>
         </nav>
         <div class="sidebar-footer">
-          <a href="#authors" id="nav-authors" class="nav-item" data-title="Авторы">
+          <a
+            href="#authors"
+            id="nav-authors"
+            class="nav-item"
+            data-title="Авторы"
+          >
             <i class="fas fa-users-viewfinder"></i>
             <span class="nav-text">Об Авторах</span>
           </a>
@@ -154,6 +174,8 @@
     <script src="js/statistics.js"></script>
     <script src="js/authors.js"></script>
     <script src="js/teeth.js"></script>
+    <script src="js/emergency.js"></script>
+    <script src="js/vitamind.js"></script>
     <script src="js/chatbot.js"></script>
   </body>
 </html>
